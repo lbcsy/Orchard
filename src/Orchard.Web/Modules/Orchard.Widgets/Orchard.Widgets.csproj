@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Orchard.Widgets</RootNamespace>
     <AssemblyName>Orchard.Widgets</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>false</UseIISExpress>
     <FileUpgradeFlags>
@@ -125,6 +125,7 @@
     <Compile Include="Filters\WidgetFilter.cs" />
     <Compile Include="ResourceManifest.cs" />
     <Compile Include="Conditions\ContentDisplayedRuleProvider.cs" />
+    <Compile Include="Security\AuthorizationEventHandler.cs" />
     <Compile Include="Services\IWidgetCommandsService.cs" />
     <Compile Include="Services\RuleManager.cs" />
     <Compile Include="Services\DefaultLayerEvaluationService.cs" />

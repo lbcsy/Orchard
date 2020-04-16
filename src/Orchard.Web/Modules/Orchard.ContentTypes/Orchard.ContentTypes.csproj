@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Orchard.ContentTypes</RootNamespace>
     <AssemblyName>Orchard.ContentTypes</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>false</UseIISExpress>
     <FileUpgradeFlags>
@@ -148,7 +148,6 @@
     <Compile Include="ViewModels\RemovePartViewModel.cs" />
     <Compile Include="ViewModels\CreateTypeViewModel.cs" />
     <Compile Include="ViewModels\EditTypeViewModel.cs" />
-    <Compile Include="ViewModels\ListContentsViewModel.cs" />
     <Compile Include="ViewModels\ListContentTypesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -12,7 +12,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Orchard.Roles</RootNamespace>
     <AssemblyName>Orchard.Roles</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -105,6 +105,7 @@
     <Compile Include="Activities\UserTaskActivity.cs" />
     <Compile Include="AdminMenu.cs" />
     <Compile Include="Commands\RoleCommands.cs" />
+    <Compile Include="Constants\SystemRoles.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Drivers\UserTaskDriver.cs" />
     <Compile Include="Events\IRoleEventHandler.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="Events\UserAddedContext.cs" />
     <Compile Include="Events\UserRemovedContext.cs" />
     <Compile Include="Events\UserRoleContext.cs" />
+    <Compile Include="Extensions\UserRolesExtensions.cs" />
     <Compile Include="Forms\SelectRolesForms.cs" />
     <Compile Include="Forms\UserTaskForms.cs" />
     <Compile Include="Recipes\Builders\RolesStep.cs" />
