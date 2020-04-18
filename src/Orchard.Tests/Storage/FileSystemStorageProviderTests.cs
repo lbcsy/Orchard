@@ -215,8 +215,8 @@ namespace Orchard.Tests.Storage {
 
         [Test]
         public void GetFileFailsInInvalidPath() {
-            Assert.That(() => _storageProvider.GetFile(@"../InvalidFile.txt"), Throws.InstanceOf(typeof(ArgumentException)));
-            Assert.That(() => _storageProvider.GetFile(@"../../InvalidFile.txt"), Throws.InstanceOf(typeof(ArgumentException)));
+            Assert.That(() => _storageProvider.GetFile(@"../InvalidFile.txt"), Throws.InstanceOf(typeof(OrchardException)));
+            Assert.That(() => _storageProvider.GetFile(@"../../InvalidFile.txt"), Throws.InstanceOf(typeof(OrchardException)));
 
             // Valid get one level up within the storage provider domain
             _storageProvider.CreateFile(@"test.txt");
@@ -226,8 +226,8 @@ namespace Orchard.Tests.Storage {
 
         [Test]
         public void ListFilesFailsInInvalidPath() {
-            Assert.That(() => _storageProvider.ListFiles(@"../InvalidFolder"), Throws.InstanceOf(typeof(ArgumentException)));
-            Assert.That(() => _storageProvider.ListFiles(@"../../InvalidFolder"), Throws.InstanceOf(typeof(ArgumentException)));
+            Assert.That(() => _storageProvider.ListFiles(@"../InvalidFolder"), Throws.InstanceOf(typeof(OrchardException)));
+            Assert.That(() => _storageProvider.ListFiles(@"../../InvalidFolder"), Throws.InstanceOf(typeof(OrchardException)));
 
             // Valid get one level up within the storage provider domain
             Assert.That(_storageProvider.ListFiles(@"SubFolder1"), Is.Not.Null);
@@ -236,8 +236,8 @@ namespace Orchard.Tests.Storage {
 
         [Test]
         public void ListFoldersFailsInInvalidPath() {
-            Assert.That(() => _storageProvider.ListFolders(@"../InvalidFolder"), Throws.InstanceOf(typeof(ArgumentException)));
-            Assert.That(() => _storageProvider.ListFolders(@"../../InvalidFolder"), Throws.InstanceOf(typeof(ArgumentException)));
+            Assert.That(() => _storageProvider.ListFolders(@"../InvalidFolder"), Throws.InstanceOf(typeof(OrchardException)));
+            Assert.That(() => _storageProvider.ListFolders(@"../../InvalidFolder"), Throws.InstanceOf(typeof(OrchardException)));
 
             // Valid get one level up within the storage provider domain
             Assert.That(_storageProvider.ListFolders(@"SubFolder1"), Is.Not.Null);
@@ -255,8 +255,8 @@ namespace Orchard.Tests.Storage {
 
         [Test]
         public void CreateFolderFailsInInvalidPath() {
-            Assert.That(() => _storageProvider.CreateFolder(@"../InvalidFolder1"), Throws.InstanceOf(typeof(ArgumentException)));
-            Assert.That(() => _storageProvider.CreateFolder(@"../../InvalidFolder1"), Throws.InstanceOf(typeof(ArgumentException)));
+            Assert.That(() => _storageProvider.CreateFolder(@"../InvalidFolder1"), Throws.InstanceOf(typeof(OrchardException)));
+            Assert.That(() => _storageProvider.CreateFolder(@"../../InvalidFolder1"), Throws.InstanceOf(typeof(OrchardException)));
 
             // Valid create one level up within the storage provider domain
             _storageProvider.CreateFolder(@"SubFolder1\..\ValidFolder1");
@@ -265,8 +265,8 @@ namespace Orchard.Tests.Storage {
 
         [Test]
         public void DeleteFolderFailsInInvalidPath() {
-            Assert.That(() => _storageProvider.DeleteFolder(@"../InvalidFolder1"), Throws.InstanceOf(typeof(ArgumentException)));
-            Assert.That(() => _storageProvider.DeleteFolder(@"../../InvalidFolder1"), Throws.InstanceOf(typeof(ArgumentException)));
+            Assert.That(() => _storageProvider.DeleteFolder(@"../InvalidFolder1"), Throws.InstanceOf(typeof(OrchardException)));
+            Assert.That(() => _storageProvider.DeleteFolder(@"../../InvalidFolder1"), Throws.InstanceOf(typeof(OrchardException)));
 
             // Valid create one level up within the storage provider domain
             Assert.That(GetFolder("SubFolder1"), Is.Not.Null);
@@ -277,8 +277,8 @@ namespace Orchard.Tests.Storage {
         [Test]
         public void RenameFolderFailsInInvalidPath() {
             Assert.That(GetFolder(@"SubFolder1/SubSubFolder1"), Is.Not.Null);
-            Assert.That(() => _storageProvider.RenameFolder(@"SubFolder1", @"../SubSubFolder1"), Throws.InstanceOf(typeof(ArgumentException)));
-            Assert.That(() => _storageProvider.RenameFolder(@"SubFolder1", @"../../SubSubFolder1"), Throws.InstanceOf(typeof(ArgumentException)));
+            Assert.That(() => _storageProvider.RenameFolder(@"SubFolder1", @"../SubSubFolder1"), Throws.InstanceOf(typeof(OrchardException)));
+            Assert.That(() => _storageProvider.RenameFolder(@"SubFolder1", @"../../SubSubFolder1"), Throws.InstanceOf(typeof(OrchardException)));
 
             // Valid move one level up within the storage provider domain
             _storageProvider.RenameFolder(@"SubFolder1\SubSubFolder1", @"SubFolder1\..\SubSubFolder1");
@@ -291,8 +291,8 @@ namespace Orchard.Tests.Storage {
 
         [Test]
         public void DeleteFileFailsInInvalidPath() {
-            Assert.That(() => _storageProvider.DeleteFile(@"../test.txt"), Throws.InstanceOf(typeof(ArgumentException)));
-            Assert.That(() => _storageProvider.DeleteFile(@"../test.txt"), Throws.InstanceOf(typeof(ArgumentException)));
+            Assert.That(() => _storageProvider.DeleteFile(@"../test.txt"), Throws.InstanceOf(typeof(OrchardException)));
+            Assert.That(() => _storageProvider.DeleteFile(@"../test.txt"), Throws.InstanceOf(typeof(OrchardException)));
 
             // Valid move one level up within the storage provider domain
             _storageProvider.CreateFile(@"test.txt");
@@ -308,8 +308,8 @@ namespace Orchard.Tests.Storage {
 
         [Test]
         public void RenameFileFailsInInvalidPath() {
-            Assert.That(() => _storageProvider.RenameFile(@"../test.txt", "invalid.txt"), Throws.InstanceOf(typeof(ArgumentException)));
-            Assert.That(() => _storageProvider.RenameFile(@"../test.txt", "invalid.txt"), Throws.InstanceOf(typeof(ArgumentException)));
+            Assert.That(() => _storageProvider.RenameFile(@"../test.txt", "invalid.txt"), Throws.InstanceOf(typeof(OrchardException)));
+            Assert.That(() => _storageProvider.RenameFile(@"../test.txt", "invalid.txt"), Throws.InstanceOf(typeof(OrchardException)));
 
             // Valid move one level up within the storage provider domain
             _storageProvider.CreateFile(@"test.txt");
@@ -322,8 +322,8 @@ namespace Orchard.Tests.Storage {
 
         [Test]
         public void CreateFileFailsInInvalidPath() {
-            Assert.That(() => _storageProvider.CreateFile(@"../InvalidFolder1.txt"), Throws.InstanceOf(typeof(ArgumentException)));
-            Assert.That(() => _storageProvider.CreateFile(@"../../InvalidFolder1.txt"), Throws.InstanceOf(typeof(ArgumentException)));
+            Assert.That(() => _storageProvider.CreateFile(@"../InvalidFolder1.txt"), Throws.InstanceOf(typeof(OrchardException)));
+            Assert.That(() => _storageProvider.CreateFile(@"../../InvalidFolder1.txt"), Throws.InstanceOf(typeof(OrchardException)));
 
             // Valid create one level up within the storage provider domain
             _storageProvider.CreateFile(@"SubFolder1\..\ValidFolder1.txt");
@@ -335,8 +335,8 @@ namespace Orchard.Tests.Storage {
             _storageProvider.CreateFile(@"test.txt");
 
             using (Stream stream = GetFile("test.txt").OpenRead()) {
-                Assert.That(() => _storageProvider.SaveStream(@"../newTest.txt", stream), Throws.InstanceOf(typeof(ArgumentException)));
-                Assert.That(() => _storageProvider.SaveStream(@"../../newTest.txt", stream), Throws.InstanceOf(typeof(ArgumentException)));
+                Assert.That(() => _storageProvider.SaveStream(@"../newTest.txt", stream), Throws.InstanceOf(typeof(OrchardException)));
+                Assert.That(() => _storageProvider.SaveStream(@"../../newTest.txt", stream), Throws.InstanceOf(typeof(OrchardException)));
 
                 // Valid create one level up within the storage provider domain
                 _storageProvider.SaveStream(@"SubFolder1\..\newTest.txt", stream);

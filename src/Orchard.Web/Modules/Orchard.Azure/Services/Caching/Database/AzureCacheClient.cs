@@ -6,7 +6,7 @@ using NHibernate.Cache;
 
 namespace Orchard.Azure.Services.Caching.Database {
 
-    public class AzureCacheClient : ICache {
+    public class AzureCacheClient : CacheBase {
 
         public AzureCacheClient(DataCache cache, string region, TimeSpan? expirationTime) {
             _logger = LoggerProvider.LoggerFor(typeof(AzureCacheClient));
@@ -37,7 +37,7 @@ namespace Orchard.Azure.Services.Caching.Database {
         private readonly string _regionAlphaNumeric;
         private readonly TimeSpan? _expirationTime;
 
-        public object Get(object key) {
+        public override object Get(object key) {
             if (key == null) {
                 throw new ArgumentNullException("key", "The parameter 'key' must not be null.");
             }
@@ -48,7 +48,7 @@ namespace Orchard.Azure.Services.Caching.Database {
             return _cache.Get(key.ToString(), _regionAlphaNumeric);
         }
 
-        public void Put(object key, object value) {
+        public override void Put(object key, object value) {
             if (key == null) {
                 throw new ArgumentNullException("key", "The parameter 'key' must not be null.");
             }
@@ -68,7 +68,7 @@ namespace Orchard.Azure.Services.Caching.Database {
             }
         }
 
-        public void Remove(object key) {
+        public override void Remove(object key) {
             if (key == null) {
                 throw new ArgumentNullException("key", "The parameter 'key' must not be null.");
             }
@@ -80,7 +80,7 @@ namespace Orchard.Azure.Services.Caching.Database {
             _cache.Remove(key.ToString(), _regionAlphaNumeric);
         }
 
-        public void Clear() {
+        public override void Clear() {
             if (_logger.IsDebugEnabled) {
                 _logger.DebugFormat("Clear() invoked in region '{0}'.", _regionAlphaNumeric);
             }
@@ -88,7 +88,7 @@ namespace Orchard.Azure.Services.Caching.Database {
             _cache.ClearRegion(_regionAlphaNumeric);
         }
 
-        public void Destroy() {
+        public override void Destroy() {
             if (_logger.IsDebugEnabled) {
                 _logger.DebugFormat("Destroy() invoked in region '{0}'.", _regionAlphaNumeric);
             }
@@ -108,7 +108,7 @@ namespace Orchard.Azure.Services.Caching.Database {
         // be (if not downright hackish).
 
         // TODO: Try to understand how it's used, and make locking more robust.
-        public void Lock(object key) {
+        public override object Lock(object key) {
             //if (key == null)
             //    throw new ArgumentNullException("key", "The parameter 'key' must not be null.");
 
@@ -126,10 +126,11 @@ namespace Orchard.Azure.Services.Caching.Database {
 
             //    throw;
             //}
+            return null;
         }
 
         // TODO: Try to understand how it's used, and make locking more robust.
-        public void Unlock(object key) {
+        public override void Unlock(object key, object lockValue) {
             //if (key == null)
             //    throw new ArgumentNullException("key", "The parameter 'key' must not be null.");
 
@@ -150,7 +151,7 @@ namespace Orchard.Azure.Services.Caching.Database {
         }
 
         // TODO: Try to understand what this is for and how it's used.
-        public long NextTimestamp() {
+        public override long NextTimestamp() {
             if (_logger.IsDebugEnabled) {
                 _logger.DebugFormat("NextTimestamp() invoked in region '{0}'.", _regionAlphaNumeric);
             }
@@ -159,14 +160,14 @@ namespace Orchard.Azure.Services.Caching.Database {
         }
 
         // TODO: Try to understand what this is for and how it's used.
-        public int Timeout {
+        public override int Timeout {
             get {
                 //return Timestamper.OneMs * (int)_lockTimeout.TotalMilliseconds;
                 return Timestamper.OneMs * 60000;
             }
         }
 
-        public string RegionName {
+        public override string RegionName {
             get {
                 // Return original region here (which may be non-alphanumeric) so NHibernate
                 // will recognize it as the same region supplied to the constructor.
