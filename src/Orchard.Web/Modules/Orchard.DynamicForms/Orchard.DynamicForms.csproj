@@ -12,7 +12,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Orchard.DynamicForms</RootNamespace>
     <AssemblyName>Orchard.DynamicForms</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -275,6 +275,7 @@
     <Compile Include="Validators\Settings\TextFieldValidationSettings.cs" />
     <Compile Include="Services\Models\ValidationSettingsBase.cs" />
     <Compile Include="Services\Models\FormEventContext.cs" />
+    <Compile Include="Drivers\ValidationElementDriver.cs" />
     <Compile Include="Drivers\BindingsElementDriver.cs" />
     <Compile Include="Drivers\TaxonomyElementDriver.cs" />
     <Compile Include="Drivers\HiddenFieldElementDriver.cs" />

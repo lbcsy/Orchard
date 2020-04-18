@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.ApplicationServices;
 using Orchard.Services;
 
 namespace Markdown.Services {
@@ -11,7 +12,9 @@ namespace Markdown.Services {
             if (string.IsNullOrEmpty(text))
                 return string.Empty;
 
-            return Markdig.Markdown.ToHtml(text);
+            var markdown = new MarkdownSharp.Markdown();
+
+            return markdown.Transform(text);
         }
     }
 }

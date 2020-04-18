@@ -95,20 +95,6 @@ namespace Orchard.Blogs {
                                                  },
                              new RouteDescriptor {
                                                      Route = new Route(
-                                                         "Admin/Blogs/Posts/CreateWithoutBlog",
-                                                         new RouteValueDictionary {
-                                                                                      {"area", "Orchard.Blogs"},
-                                                                                      {"controller", "BlogPostAdmin"},
-                                                                                      {"action", "CreateWithoutBlog"}
-                                                                                  },
-                                                         new RouteValueDictionary (),
-                                                         new RouteValueDictionary {
-                                                                                      {"area", "Orchard.Blogs"}
-                                                                                  },
-                                                         new MvcRouteHandler())
-                                                 },
-                             new RouteDescriptor {
-                                                     Route = new Route(
                                                          "Admin/Blogs/{blogId}/Posts/{postId}/Edit",
                                                          new RouteValueDictionary {
                                                                                       {"area", "Orchard.Blogs"},

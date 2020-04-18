@@ -535,7 +535,7 @@ namespace Orchard.Tests.Localization {
                         }
 
                         var dateTime = new DateTime(1998, 1, 1, 10, 30, 30, 678, kind);
-                        var dateTimeOffset = new DateTimeOffset(dateTime, timeZone.BaseUtcOffset);
+                        var dateTimeOffset = new DateTimeOffset(dateTime, timeZone == TimeZoneInfo.Utc ? timeZone.BaseUtcOffset: timeZone.GetUtcOffset(dateTime));
                         var dateTimeParts = DateTimeParts.FromDateTime(dateTime, offset);
 
                         // Print reference string using Gregorian calendar to avoid calendar conversion.
