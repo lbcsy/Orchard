@@ -193,3 +193,4 @@ src/Orchard.Azure/Orchard.Azure.CloudService/Staging/
 */.vs/*
 src/Rebracer.xml
 *.bak
+lib/nhibernate.linq/NHibernate.Linq-1.0.0.GA-src.zip
