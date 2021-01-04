@@ -9,7 +9,7 @@ namespace NHibernate.Linq.Tests
 	public class BaseTest
 	{
 		protected NorthwindContext db;
-		protected TestContext nhib;
+		protected NHibernate.Linq.Tests.Entities.TestContext nhib;
 		protected NorthwindContext nwnd;
 		protected ISession session;
 		private static Exception ex;
@@ -31,7 +31,7 @@ namespace NHibernate.Linq.Tests
 				throw ex;
 			session = CreateSession();
 			nwnd = db = new NorthwindContext(session);
-			nhib = new TestContext(session);
+			nhib = new NHibernate.Linq.Tests.Entities.TestContext(session);
 		}
 
 		protected virtual ISession CreateSession()

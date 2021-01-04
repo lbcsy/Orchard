@@ -40,27 +40,27 @@ namespace NHibernate.Linq.Tests
 			Assert.AreEqual(3, query.Count);
 		}
 		[Test]
-		[Ignore]
+		[Ignore("")]
 		public void PropertyCriteriaDoesntSwap()
 		{
 		}
 		[Test]
-		[Ignore]
+		[Ignore("")]
 		public void CriteriaPropertySwapsToPropertyCriteria()
 		{
 		}
 		[Test]
-		[Ignore]
+		[Ignore("")]
 		public void ValueCriteriaDoesntSwap()
 		{
 		}
 		[Test]
-		[Ignore]
+		[Ignore("")]
 		public void CriteriaValueSwapsValueCriteria()
 		{
 		}
 		[Test]
-		[Ignore]
+		[Ignore("")]
 		public void CriteriaCriteriaDoesntSwap()
 		{
 		}

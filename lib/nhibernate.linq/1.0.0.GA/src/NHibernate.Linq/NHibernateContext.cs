@@ -280,7 +280,7 @@ namespace NHibernate.Linq
 			{
 				MethodInfo removeMethod = collection.GetType().GetMethod("Remove", BindingFlags.Public | BindingFlags.Instance);
 				if (removeMethod == null)
-				{
+				{				
 					throw new DataServiceException(string.Concat("Could not determine the collection type of the ", propertyName, " property."));
 				}
 				removeMethod.Invoke(collection, new object[] { resourceToBeRemoved });
