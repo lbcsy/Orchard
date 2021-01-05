@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using NHibernate.Linq.SqlClient;
 using NUnit.Framework;
 
 namespace NHibernate.Linq.Tests
@@ -9,39 +8,6 @@ namespace NHibernate.Linq.Tests
 	[TestFixture]
 	public class AggregateTests : BaseTest
 	{
-		[Test]
-		public void AggregateWithStartsWith()
-		{
-			var query = (from c in db.Customers where c.CustomerID.StartsWith("A") select c.CustomerID)
-				.Aggregate<String, StringBuilder>(new StringBuilder(),
-												  (sb, id) => sb.Append(id).Append(","));
-
-			Console.WriteLine(query);
-			Assert.AreEqual("ALFKI,ANATR,ANTON,AROUT,", query.ToString());
-		}
-
-		[Test]
-		public void AggregateWithEndsWith()
-		{
-			var query = (from c in db.Customers where c.CustomerID.EndsWith("TH") select c.CustomerID)
-				.Aggregate<String, StringBuilder>(new StringBuilder(),
-												  (sb, id) => sb.Append(id).Append(","));
-
-			Console.WriteLine(query);
-			Assert.AreEqual("WARTH,", query.ToString());
-		}
-
-		[Test]
-		public void AggregateWithContains()
-		{
-			var query = (from c in db.Customers where c.CustomerID.Contains("CH") select c.CustomerID)
-				.Aggregate<String, StringBuilder>(new StringBuilder(),
-												  (sb, id) => sb.Append(id).Append(","));
-
-			Console.WriteLine(query);
-			Assert.AreEqual("CHOPS,RANCH,", query.ToString());
-		}
-
 		[Test]
 		public void AggregateWithEquals()
 		{
@@ -54,19 +20,7 @@ namespace NHibernate.Linq.Tests
 			Assert.AreEqual("ALFKI,ANATR,ANTON", query);
 		}
 
-		[Test]
-		public void AggregateWithNotStartsWith()
-		{
-			var query = (from c in db.Customers
-						 where c.CustomerID.StartsWith("A") && !c.CustomerID.StartsWith("AN")
-						 select c.CustomerID)
-				.Aggregate<String, StringBuilder>(new StringBuilder(),
-												  (sb, id) => sb.Append(id).Append(","));
-
-			Console.WriteLine(query);
-			Assert.AreEqual("ALFKI,AROUT,", query.ToString());
-		}
-
+		
 		[Test]
 		[Ignore("TODO")]
 		public void AggregateWithMonthFunction()

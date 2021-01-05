@@ -1,16 +1,10 @@
 using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
-using NHibernate.Linq.Tests.Entities;
 using NUnit.Framework;
 using System;
 namespace NHibernate.Linq.Tests
 {
-	public class BaseTest
+    public class BaseTest
 	{
-		protected NorthwindContext db;
-		protected NHibernate.Linq.Tests.Entities.TestContext nhib;
-		protected NorthwindContext nwnd;
 		protected ISession session;
 		private static Exception ex;
 		protected virtual string ConnectionStringName
@@ -30,13 +24,11 @@ namespace NHibernate.Linq.Tests
 			if(ex!=null)
 				throw ex;
 			session = CreateSession();
-			nwnd = db = new NorthwindContext(session);
-			nhib = new NHibernate.Linq.Tests.Entities.TestContext(session);
 		}
 
 		protected virtual ISession CreateSession()
 		{
-			var con = new SqlConnection(ConfigurationManager.ConnectionStrings[ConnectionStringName].ConnectionString);
+			var con = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings[ConnectionStringName].ConnectionString);
 			con.Open();
 			return GlobalSetup.CreateSession(con);
 		}

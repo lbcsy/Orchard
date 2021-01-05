@@ -255,7 +255,7 @@ namespace NHibernate.Linq.Tests
 						 select patientRecord).ToList();
 			Assert.That(query.Count,Is.GreaterThan(0));
 		}
-		[Test,Ignore]
+		[Test,Ignore("")]
 		public void OrdersWithDeepCollectionContains()
 		{
 			var pr = session.Linq<PatientRecord>().First();

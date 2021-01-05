@@ -15,31 +15,7 @@ namespace NHibernate.Linq.Tests
 			return GlobalSetup.CreateSession();
 		}
 
-		[Test]
-		public void NoWhereClause()
-		{
-			var query = (from user in nhib.Users
-						 select user).ToList();
-			Assert.AreEqual(3, query.Count);
-		}
-
-		[Test]
-		public void OrWithTrueReducesTo1Eq1Clause()
-		{
-			var query = (from user in nhib.Users
-						 where user.Name == "ayende" || true
-						 select user).ToList();
-			Assert.AreEqual(3, query.Count);
-		}
-		[Test]
-		public void AndWithTrueReducesTo1Eq0Clause()
-		{
-			var query = (from user in nhib.Users
-						 where user.Name == "ayende" && false
-						 select user).ToList();
-			Assert.AreEqual(0, query.Count);
-		}
-
+		
 		[Test]
 		public void WhereWithConstantExpression()
 		{
@@ -59,14 +35,16 @@ namespace NHibernate.Linq.Tests
 		}
 
 		[Test]
-		[ExpectedException(typeof(InvalidOperationException))]
 		public void FirstElementWithQueryThatReturnsNoResults()
 		{
-			var query = (from user in session.Linq<User>()
-						 where user.Name == "xxx"
-						 select user).First();
+			Assert.Throws<InvalidOperationException>(() =>
+			{
+				var query = (from user in session.Linq<User>()
+							 where user.Name == "xxx"
+							 select user).First();
+			}
+			);
 		}
-
 		[Test]
 		public void FirstOrDefaultElementWithQueryThatReturnsNoResults()
 		{
@@ -78,12 +56,14 @@ namespace NHibernate.Linq.Tests
 		}
 
 		[Test]
-		[ExpectedException(typeof(InvalidOperationException))]
 		public void SingleElementWithQueryThatReturnsNoResults()
 		{
-			var query = (from user in session.Linq<User>()
-						 where user.Name == "xxx"
-						 select user).Single();
+			Assert.Throws<InvalidOperationException>(() =>
+			{
+				var query = (from user in session.Linq<User>()
+							 where user.Name == "xxx"
+							 select user).Single();
+			});
 		}
 
 		[Test]
@@ -168,15 +148,6 @@ namespace NHibernate.Linq.Tests
 						 where user.RegisteredAt <= new DateTime(2000, 1, 1) || user.Name == "nhibernate"
 						 select user).ToList();
 			Assert.AreEqual(2, query.Count);
-		}
-
-		[Test]
-		public void TestDataContext()
-		{
-			var query = from u in nhib.Users
-						where u.Name == "ayende"
-						select u;
-			Assert.AreEqual(1, query.Count());
 		}
 
 		[Test]

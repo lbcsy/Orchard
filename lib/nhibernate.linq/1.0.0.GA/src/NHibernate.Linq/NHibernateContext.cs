@@ -5,7 +5,181 @@ using System.Data.Services;
 using System.Linq;
 using System.Reflection;
 using NHibernate.Metadata;
-
+namespace System.Data.Services
+{
+	//
+	// Summary:
+	//     This interface declares the methods required to support the $expand query option
+	//     for an WCF Data Services.
+	public interface IExpandProvider
+	{
+		//
+		// Summary:
+		//     Applies expansions to the specified queryable parameter.
+		//
+		// Parameters:
+		//   queryable:
+		//     The System.Linq.IQueryable`1 object to expand.
+		//
+		//   expandPaths:
+		//     A collection of System.Data.Services.ExpandSegmentCollection paths to expand.
+		//
+		// Returns:
+		//     An System.Collections.IEnumerable object of the same type as the supplied queryable
+		//     object that includes the specified expandPaths.
+		IEnumerable ApplyExpansions(IQueryable queryable, ICollection<ExpandSegmentCollection> expandPaths);
+	}
+}
+namespace System.Data.Services
+{
+	//
+	// Summary:
+	//     An interface used to insert or update a resource by the HTTP POST method.
+	public interface IUpdatable
+	{
+		//
+		// Summary:
+		//     Adds the specified value to the collection.
+		//
+		// Parameters:
+		//   targetResource:
+		//     Target object that defines the property.
+		//
+		//   propertyName:
+		//     The name of the collection property to which the resource should be added.
+		//
+		//   resourceToBeAdded:
+		//     The opaque object representing the resource to be added.
+		void AddReferenceToCollection(object targetResource, string propertyName, object resourceToBeAdded);
+		//
+		// Summary:
+		//     Cancels a change to the data.
+		void ClearChanges();
+		//
+		// Summary:
+		//     Creates the resource of the specified type and that belongs to the specified
+		//     container.
+		//
+		// Parameters:
+		//   containerName:
+		//     The name of the entity set to which the resource belongs.
+		//
+		//   fullTypeName:
+		//     The full namespace-qualified type name of the resource.
+		//
+		// Returns:
+		//     The object representing a resource of specified type and belonging to the specified
+		//     container.
+		object CreateResource(string containerName, string fullTypeName);
+		//
+		// Summary:
+		//     Deletes the specified resource.
+		//
+		// Parameters:
+		//   targetResource:
+		//     The resource to be deleted.
+		void DeleteResource(object targetResource);
+		//
+		// Summary:
+		//     Gets the resource of the specified type identified by a query and type name.
+		//
+		// Parameters:
+		//   query:
+		//     Language integrated query (LINQ) pointing to a particular resource.
+		//
+		//   fullTypeName:
+		//     The fully qualified type name of resource.
+		//
+		// Returns:
+		//     An opaque object representing a resource of the specified type, referenced by
+		//     the specified query.
+		object GetResource(IQueryable query, string fullTypeName);
+		//
+		// Summary:
+		//     Gets the value of the specified property on the target object.
+		//
+		// Parameters:
+		//   targetResource:
+		//     An opaque object that represents a resource.
+		//
+		//   propertyName:
+		//     The name of the property whose value needs to be retrieved.
+		//
+		// Returns:
+		//     The value of the object.
+		object GetValue(object targetResource, string propertyName);
+		//
+		// Summary:
+		//     Removes the specified value from the collection.
+		//
+		// Parameters:
+		//   targetResource:
+		//     The target object that defines the property.
+		//
+		//   propertyName:
+		//     The name of the property whose value needs to be updated.
+		//
+		//   resourceToBeRemoved:
+		//     The property value that needs to be removed.
+		void RemoveReferenceFromCollection(object targetResource, string propertyName, object resourceToBeRemoved);
+		//
+		// Summary:
+		//     Resets the resource identified by the parameter resource to its default value.
+		//
+		// Parameters:
+		//   resource:
+		//     The resource to be updated.
+		//
+		// Returns:
+		//     The resource with its value reset to the default value.
+		object ResetResource(object resource);
+		//
+		// Summary:
+		//     Returns the instance of the resource represented by the specified resource object.
+		//
+		// Parameters:
+		//   resource:
+		//     The object representing the resource whose instance needs to be retrieved.
+		//
+		// Returns:
+		//     The instance of the resource represented by the specified resource object.
+		object ResolveResource(object resource);
+		//
+		// Summary:
+		//     Saves all the changes that have been made by using the System.Data.Services.IUpdatable
+		//     APIs.
+		void SaveChanges();
+		//
+		// Summary:
+		//     Sets the value of the specified reference property on the target object.
+		//
+		// Parameters:
+		//   targetResource:
+		//     The target object that defines the property.
+		//
+		//   propertyName:
+		//     The name of the property whose value needs to be updated.
+		//
+		//   propertyValue:
+		//     The property value to be updated.
+		void SetReference(object targetResource, string propertyName, object propertyValue);
+		//
+		// Summary:
+		//     Sets the value of the property with the specified name on the target resource
+		//     to the specified property value.
+		//
+		// Parameters:
+		//   targetResource:
+		//     The target object that defines the property.
+		//
+		//   propertyName:
+		//     The name of the property whose value needs to be updated.
+		//
+		//   propertyValue:
+		//     The property value for update.
+		void SetValue(object targetResource, string propertyName, object propertyValue);
+	}
+}
 namespace NHibernate.Linq
 {
 	/// <summary>
@@ -356,7 +530,7 @@ namespace NHibernate.Linq
 					tx.Rollback();
 
 					// Send the error back to the user
-					throw new DataServiceException("Failed to save changes.  See inner exception for details", ex);
+					throw new DataException("Failed to save changes.  See inner exception for details", ex);
 				}
 			}
 		}

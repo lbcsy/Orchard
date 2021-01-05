@@ -254,27 +254,6 @@ namespace System.Linq.Dynamic
 		int classCount;
 		ReaderWriterLock rwLock;
 
-		private ClassFactory()
-		{
-			AssemblyName name = new AssemblyName("DynamicClasses");
-			AssemblyBuilder assembly = AppDomain.CurrentDomain.DefineDynamicAssembly(name, AssemblyBuilderAccess.Run);
-#if ENABLE_LINQ_PARTIAL_TRUST
-            new ReflectionPermission(PermissionState.Unrestricted).Assert();
-#endif
-			try
-			{
-				module = assembly.DefineDynamicModule("Module");
-			}
-			finally
-			{
-#if ENABLE_LINQ_PARTIAL_TRUST
-                PermissionSet.RevertAssert();
-#endif
-			}
-			classes = new Dictionary<Signature, Type>();
-			rwLock = new ReaderWriterLock();
-		}
-
 		public Type GetDynamicClass(IEnumerable<DynamicProperty> properties)
 		{
 			rwLock.AcquireReaderLock(Timeout.Infinite);

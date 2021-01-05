@@ -100,20 +100,6 @@ namespace NHibernate.Linq.Tests
 			}
 		}
 
-		[Test]
-		public void ComplexAscendingDescendingOrderByClause()
-		{
-			var query = from c in nwnd.Customers
-						where c.Country == "Belgium"
-						orderby c.Country ascending, c.City descending
-						select c.City;
-
-			var ids = query.ToList();
-
-			if (ids.Count > 1)
-			{
-				Assert.Greater(ids[0], ids[1]);
-			}
-		}
+	
 	}
 }

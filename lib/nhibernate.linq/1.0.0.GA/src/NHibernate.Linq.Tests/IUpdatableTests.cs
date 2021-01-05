@@ -5,8 +5,6 @@ using NUnit.Framework;
 
 namespace NHibernate.Linq.Tests
 {
-	using System.Data.Services;
-
 	[TestFixture]
 	public class IUpdatableTests : BaseTest
 	{
@@ -17,13 +15,7 @@ namespace NHibernate.Linq.Tests
 			return GlobalSetup.CreateSession();
 		}
 
-		public override void Setup()
-		{
-			base.Setup();
-			this.update = this.nwnd as IUpdatable;
-			AddUser();
-		}
-
+		
 		public override void TearDown()
 		{
 			new GlobalSetup().SetupNHibernate();
@@ -59,8 +51,6 @@ namespace NHibernate.Linq.Tests
 		public void TestGetResource()
 		{
 			// Get a known customer
-			var qry = this.nhib.Users.Where(u => u.Id == 1);
-			object result = update.GetResource(qry, typeof(User).FullName);
 			Assert.IsNotNull(result, "GetResource failed to return a value");
 
 			User user = result as User;
