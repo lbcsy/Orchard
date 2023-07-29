@@ -365,6 +365,8 @@ namespace Orchard.Logging {
             }
         }
 
+        bool Logger.IsTraceEnabled => throw new NotImplementedException();
+
         [Obsolete("Use DebugFormat instead")]
         public void Debug(string format, params object[] args) {
             if (IsDebugEnabled) {
@@ -424,6 +426,34 @@ namespace Orchard.Logging {
         public override object InitializeLifetimeService() {
             // never expire the cross-AppDomain lease on this object
             return null;
+        }
+
+        void Logger.Trace(string message) {
+            throw new NotImplementedException();
+        }
+
+        void Logger.Trace(Func<string> messageFactory) {
+            throw new NotImplementedException();
+        }
+
+        void Logger.Trace(string message, Exception exception) {
+            throw new NotImplementedException();
+        }
+
+        void Logger.TraceFormat(string format, params object[] args) {
+            throw new NotImplementedException();
+        }
+
+        void Logger.TraceFormat(Exception exception, string format, params object[] args) {
+            throw new NotImplementedException();
+        }
+
+        void Logger.TraceFormat(IFormatProvider formatProvider, string format, params object[] args) {
+            throw new NotImplementedException();
+        }
+
+        void Logger.TraceFormat(Exception exception, IFormatProvider formatProvider, string format, params object[] args) {
+            throw new NotImplementedException();
         }
     }
 }
