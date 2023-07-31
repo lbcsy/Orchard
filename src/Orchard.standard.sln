@@ -308,6 +308,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		..\.github\workflows\build-crowdin-translation-packages.yml = ..\.github\workflows\build-crowdin-translation-packages.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "log4netStandardTest", "log4netStandardTest\log4netStandardTest.csproj", "{98DB7B96-EFA1-465B-B638-69EA13289D99}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CodeCoverage|Any CPU = CodeCoverage|Any CPU
@@ -1191,6 +1193,16 @@ Global
 		{2CF9A83A-BC40-4485-A763-BFF59B2EBDAD}.FxCop|Any CPU.Build.0 = Release|Any CPU
 		{2CF9A83A-BC40-4485-A763-BFF59B2EBDAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CF9A83A-BC40-4485-A763-BFF59B2EBDAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98DB7B96-EFA1-465B-B638-69EA13289D99}.CodeCoverage|Any CPU.ActiveCfg = Debug|Any CPU
+		{98DB7B96-EFA1-465B-B638-69EA13289D99}.CodeCoverage|Any CPU.Build.0 = Debug|Any CPU
+		{98DB7B96-EFA1-465B-B638-69EA13289D99}.Coverage|Any CPU.ActiveCfg = Debug|Any CPU
+		{98DB7B96-EFA1-465B-B638-69EA13289D99}.Coverage|Any CPU.Build.0 = Debug|Any CPU
+		{98DB7B96-EFA1-465B-B638-69EA13289D99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98DB7B96-EFA1-465B-B638-69EA13289D99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98DB7B96-EFA1-465B-B638-69EA13289D99}.FxCop|Any CPU.ActiveCfg = Debug|Any CPU
+		{98DB7B96-EFA1-465B-B638-69EA13289D99}.FxCop|Any CPU.Build.0 = Debug|Any CPU
+		{98DB7B96-EFA1-465B-B638-69EA13289D99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98DB7B96-EFA1-465B-B638-69EA13289D99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1288,7 +1300,7 @@ Global
 		{4C95F27D-A872-481F-A9AF-851DB178C186} = {06A32C3C-10A2-472E-B725-5AF102E92C6F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {3585D970-275B-4363-9F61-CD37CFC9DCD3}
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\TransientFaultHandling.Core.5.1.1209.1\lib\NET4
+		SolutionGuid = {3585D970-275B-4363-9F61-CD37CFC9DCD3}
 	EndGlobalSection
 EndGlobal
