@@ -112,8 +112,9 @@ namespace Orchard.Tests.UI.Navigation {
                 if (currentMenuItem.Text.TextHint.Equals(text)) {
                     return currentMenuItem;
                 }
-
-                currentMenuItem.Items.ForEach(remainingItems.Enqueue);
+                foreach (var item in currentMenuItem.Items) {
+                    remainingItems.Enqueue(item);
+                }
             }
 
             return null;

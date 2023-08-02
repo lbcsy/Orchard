@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Autofac;
-using Autofac.Configuration;
 using Autofac.Core;
 using Autofac.Core.Lifetime;
 using Autofac.Core.Resolving;
@@ -21,7 +20,7 @@ namespace Orchard.Environment.AutofacUtil {
         public IComponentRegistry ComponentRegistry {
             get { return _lifetimeScope.ComponentRegistry; }
         }
-
+        
         public void Dispose() {
         }
 

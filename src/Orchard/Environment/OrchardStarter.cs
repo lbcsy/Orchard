@@ -7,7 +7,6 @@ using System.Web.Http;
 using System.Web.Http.Dispatcher;
 using System.Web.Mvc;
 using Autofac;
-using Autofac.Configuration;
 using Orchard.Caching;
 using Orchard.Data;
 using Orchard.Environment.AutofacUtil;
@@ -132,6 +131,7 @@ namespace Orchard.Environment {
 
             registrations(builder);
 
+            /* Autofac 4+ does not use ConfigurationSettingsReader, please refer to Autofac configuration document for more details
             var autofacSection = ConfigurationManager.GetSection(ConfigurationSettingsReaderConstants.DefaultSectionName);
             if (autofacSection != null)
                 builder.RegisterModule(new ConfigurationSettingsReader());
@@ -139,6 +139,7 @@ namespace Orchard.Environment {
             var optionalHostConfig = HostingEnvironment.MapPath("~/Config/Host.config");
             if (File.Exists(optionalHostConfig))
                 builder.RegisterModule(new ConfigurationSettingsReader(ConfigurationSettingsReaderConstants.DefaultSectionName, optionalHostConfig));
+            */
 
             var optionalComponentsConfig = HostingEnvironment.MapPath("~/Config/HostComponents.config");
             if (File.Exists(optionalComponentsConfig))

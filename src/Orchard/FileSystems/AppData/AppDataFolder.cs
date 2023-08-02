@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.AccessControl;
 using System.Linq;
 using Orchard.Caching;
 using Orchard.FileSystems.VirtualPath;
@@ -144,9 +145,10 @@ namespace Orchard.FileSystems.AppData {
             
             // Modify file's access control to inherit permissions from parent directory. When files are moved they do not inherit
             // permissions from the parent directory by default
-            System.Security.AccessControl.FileSecurity fileSecurity = File.GetAccessControl(path);
+            FileInfo fileInfo = new FileInfo(path);
+            FileSecurity fileSecurity = fileInfo.GetAccessControl();
             fileSecurity.SetAccessRuleProtection(false, false);
-            File.SetAccessControl(path, fileSecurity);
+            fileInfo.SetAccessControl(fileSecurity);
         }
 
         public Stream CreateFile(string path) {

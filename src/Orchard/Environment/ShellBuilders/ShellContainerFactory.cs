@@ -8,7 +8,6 @@ using System.Web.Http.Controllers;
 using System.Web.Mvc;
 using Autofac;
 using Autofac.Builder;
-using Autofac.Configuration;
 using Autofac.Core;
 using Autofac.Features.Indexed;
 using Orchard.Environment.AutofacUtil;
@@ -234,6 +233,7 @@ namespace Orchard.Environment.ShellBuilders {
                     // Register code-only registrations specific to a shell
                     _shellContainerRegistrations.Registrations(builder);
 
+                    /* Autofac 4+ has retired ConfigurationSettingsReader, please refer to Autofac configuration documentation for more details
                     var optionalShellByNameConfig = HostingEnvironment.MapPath("~/Config/Sites." + settings.Name + ".config");
                     if (File.Exists(optionalShellByNameConfig)) {
                         builder.RegisterModule(new ConfigurationSettingsReader(ConfigurationSettingsReaderConstants.DefaultSectionName, optionalShellByNameConfig));
@@ -243,6 +243,7 @@ namespace Orchard.Environment.ShellBuilders {
                         if (File.Exists(optionalShellConfig))
                             builder.RegisterModule(new ConfigurationSettingsReader(ConfigurationSettingsReaderConstants.DefaultSectionName, optionalShellConfig));
                     }
+                    */
 
                     var optionalComponentsConfig = HostingEnvironment.MapPath("~/Config/HostComponents.config");
                     if (File.Exists(optionalComponentsConfig))
