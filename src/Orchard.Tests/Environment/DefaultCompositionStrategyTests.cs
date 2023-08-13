@@ -29,7 +29,7 @@ namespace Orchard.Tests.Environment {
         public void Init() {
             var builder = new ContainerBuilder();
             builder.RegisterType<CompositionStrategy>().As<ICompositionStrategy>();
-            builder.RegisterAutoMocking(MockBehavior.Strict);
+            builder.RegisterAutoMocking(MockBehavior.Strict).Ignore< ICompositionStrategy>();
             _container = builder.Build();
 
             _extensionDescriptors = Enumerable.Empty<ExtensionDescriptor>();
