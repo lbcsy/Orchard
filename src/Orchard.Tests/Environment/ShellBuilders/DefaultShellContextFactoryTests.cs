@@ -24,7 +24,9 @@ namespace Orchard.Tests.Environment.ShellBuilders {
             builder.RegisterModule(new MvcModule());
             builder.RegisterModule(new WorkContextModule());
             builder.RegisterType<WorkContextAccessor>().As<IWorkContextAccessor>();
-            builder.RegisterAutoMocking(Moq.MockBehavior.Strict);
+            builder.RegisterAutoMocking(Moq.MockBehavior.Strict)
+                .Ignore< IShellContextFactory>()
+                .Ignore< IWorkContextAccessor>();
             _container = builder.Build();
         }
 
