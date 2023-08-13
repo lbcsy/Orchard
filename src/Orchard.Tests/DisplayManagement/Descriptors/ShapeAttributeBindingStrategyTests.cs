@@ -22,7 +22,7 @@ namespace Orchard.Tests.DisplayManagement.Descriptors {
             if (builder == null) {
                 throw new ArgumentNullException("builder");
             }
-            builder.RegisterAutoMocking();
+            builder.RegisterAutoMocking().Ignore< IShapeTableProvider>();
             _testFeature = new Feature {
                 Descriptor = new FeatureDescriptor {
                     Id = "Testing",
