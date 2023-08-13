@@ -26,7 +26,9 @@ namespace Orchard.Tests.Environment.State {
             builder.RegisterType<DefaultProcessingEngine>().As<IProcessingEngine>();
             builder.RegisterModule(new WorkContextModule());
             builder.RegisterType<WorkContextAccessor>().As<IWorkContextAccessor>();
-            builder.RegisterAutoMocking(MockBehavior.Loose);
+            builder.RegisterAutoMocking(MockBehavior.Loose)
+                .Ignore< IProcessingEngine>()
+                .Ignore< IWorkContextAccessor>();
             _container = builder.Build();
 
             _shellContext = new ShellContext {
