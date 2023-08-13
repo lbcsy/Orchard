@@ -29,7 +29,8 @@ namespace Orchard.Tests.Mvc {
             builder.RegisterType<ShellRoute>().InstancePerDependency();
             builder.Register(ctx => _routes);
             builder.Register(ctx => new ShellSettings { Name = ShellSettings.DefaultName });
-            builder.RegisterAutoMocking();
+            builder.RegisterAutoMocking()
+                .Ignore<IRoutePublisher>();
             _container = builder.Build();
         }
 
