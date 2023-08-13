@@ -12,7 +12,7 @@ namespace Orchard.Tests.Tasks {
     [TestFixture]
     public class SweepGeneratorTests : ContainerTestBase {
         protected override void Register(ContainerBuilder builder) {
-            builder.RegisterAutoMocking(MockBehavior.Loose);
+            builder.RegisterAutoMocking(MockBehavior.Loose).Ignore< IWorkContextAccessor>();
             builder.RegisterModule(new MvcModule());
             builder.RegisterModule(new WorkContextModule());
             builder.RegisterType<WorkContextAccessor>().As<IWorkContextAccessor>();
