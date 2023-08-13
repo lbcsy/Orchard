@@ -22,7 +22,7 @@ namespace Orchard.Tests.Environment {
             builder.RegisterModule(new MvcModule());
             builder.RegisterModule(new WorkContextModule());
             builder.RegisterType<WorkContextAccessor>().As<IWorkContextAccessor>();
-            builder.RegisterAutoMocking();
+            builder.RegisterAutoMocking().Ignore< IWorkContextAccessor>();
         }
 
         protected override void Resolve(ILifetimeScope container) {
