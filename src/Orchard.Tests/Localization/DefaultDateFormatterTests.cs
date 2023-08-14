@@ -534,9 +534,12 @@ namespace Orchard.Tests.Localization {
                             kind = DateTimeKind.Local;
                         }
 
-                        var dateTime = new DateTime(1998, 1, 1, 10, 30, 30, 678, kind);
-                        var dateTimeOffset = new DateTimeOffset(dateTime, timeZone.BaseUtcOffset);
-                        var dateTimeParts = DateTimeParts.FromDateTime(dateTime, offset);
+                         var dateTime = new DateTime(1998, 1, 1, 10, 30, 30, 678, kind);
+                         if (timeZone == TimeZoneInfo.Local) {
+                             offset = timeZone.GetUtcOffset(dateTime);
+                         }
+                         var dateTimeOffset = new DateTimeOffset(dateTime, offset);
+                         var dateTimeParts = DateTimeParts.FromDateTime(dateTime, offset);
 
                         // Print reference string using Gregorian calendar to avoid calendar conversion.
                         var cultureGregorian = (CultureInfo)culture.Clone();
