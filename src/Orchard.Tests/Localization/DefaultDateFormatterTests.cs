@@ -161,8 +161,7 @@ namespace Orchard.Tests.Localization {
                             offset = timeZone.GetUtcOffset(dateTime);
                         }
                         var dateTimeOffset = new DateTimeOffset(dateTime, offset);
-                        var dateTimeParts = DateTimeParts.FromDateTime(dateTime, offset);
-
+                        
                         // Print string using Gregorian calendar to avoid calendar conversion.
                         var cultureGregorian = (CultureInfo)culture.Clone();
                         cultureGregorian.DateTimeFormat.Calendar = cultureGregorian.OptionalCalendars.OfType<GregorianCalendar>().First();
